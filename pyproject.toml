@@ -1,4 +1,0 @@
-[tool.poetry]
-name = "chernobyl-nuclear-disaster-rag-app"
-version = "0.1.0"
-package-mode = false
