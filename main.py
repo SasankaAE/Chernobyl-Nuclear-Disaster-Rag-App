@@ -85,7 +85,7 @@ def retrieve(query, k=3):
 # OPENROUTER LLM
 # -----------------------------
 def ask_llm(query, context):
-    api_key = st.secrets("OPENROUTER_API_KEY")
+    api_key = st.secrets["OPENROUTER_API_KEY"]
 
     url = "https://openrouter.ai/api/v1/chat/completions"
 
