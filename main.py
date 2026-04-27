@@ -91,8 +91,6 @@ def ask_llm(query, context):
 
     headers = {
         "Authorization": f"Bearer {api_key}",
-        "HTTP-Referer": "http://localhost:8501",
-        "X-Title": "Chernobyl Chat RAG",
         "Content-Type": "application/json"
     }
 
