@@ -6,7 +6,7 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 
 # PAGE CONFIG
-st.set_page_config(page_title="Chernobyl Chat RAG", layout="wide")
+st.set_page_config(page_title="Chernobyl Chat RAG",page_icon="☢️", layout="wide")
 st.title("☢️ Chernobyl Chat RAG App")
 
 
