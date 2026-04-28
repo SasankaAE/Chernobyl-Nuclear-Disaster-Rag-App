@@ -5,22 +5,17 @@ import faiss
 import numpy as np
 from sentence_transformers import SentenceTransformer
 
-# -----------------------------
 # PAGE CONFIG
-# -----------------------------
 st.set_page_config(page_title="Chernobyl Chat RAG", layout="wide")
-
 st.title("☢️ Chernobyl Chat RAG App")
 
-# -----------------------------
+
 # SESSION STATE (CHAT MEMORY)
-# -----------------------------
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# -----------------------------
+
 # FETCH WIKIPEDIA
-# -----------------------------
 @st.cache_data
 def fetch_wikipedia():
     url = "https://en.wikipedia.org/w/api.php"
@@ -43,18 +38,16 @@ def fetch_wikipedia():
     page = next(iter(data["query"]["pages"].values()))
     return page.get("extract", "")
 
-# -----------------------------
+
 # CHUNKING
-# -----------------------------
 def chunk_text(text, size=500, overlap=100):
     chunks = []
     for i in range(0, len(text), size - overlap):
         chunks.append(text[i:i + size])
     return chunks
 
-# -----------------------------
+
 # RAG SETUP
-# -----------------------------
 @st.cache_resource
 def setup_rag():
     text = fetch_wikipedia()
@@ -70,17 +63,15 @@ def setup_rag():
 
 model, index, chunks = setup_rag()
 
-# -----------------------------
+
 # RETRIEVAL
-# -----------------------------
 def retrieve(query, k=3):
     query_vec = model.encode([query])
     D, I = index.search(np.array(query_vec), k)
     return [chunks[i] for i in I[0]]
 
-# -----------------------------
+
 # OPENROUTER LLM
-# -----------------------------
 def ask_llm(query, context):
     api_key = st.secrets["OPENROUTER_API_KEY"]
 
@@ -115,16 +106,14 @@ User: {query}
 
     return res.json()["choices"][0]["message"]["content"]
 
-# -----------------------------
+
 # DISPLAY CHAT HISTORY
-# -----------------------------
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.write(msg["content"])
 
-# -----------------------------
+
 # CHAT INPUT
-# -----------------------------
 user_input = st.chat_input("Ask about Chernobyl...")
 
 if user_input:
