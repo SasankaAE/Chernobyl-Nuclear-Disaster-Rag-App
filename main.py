@@ -10,7 +10,7 @@ from sentence_transformers import SentenceTransformer
 # -----------------------------
 st.set_page_config(page_title="Chernobyl Chat RAG", layout="wide")
 
-st.title("☢️ Chernobyl Chat RAG (ChatGPT Style)")
+st.title("☢️ Chernobyl Chat RAG App")
 
 # -----------------------------
 # SESSION STATE (CHAT MEMORY)
